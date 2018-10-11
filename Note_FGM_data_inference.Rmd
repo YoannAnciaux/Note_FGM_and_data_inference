@@ -1,0 +1,147 @@
+---
+title: "\"I have a dream\""
+output: 
+  pdf_document:
+    number_sections: true
+---
+
+# Introduction
+
+## What are fitness landscapes and where do they come from ?
+
+### Definition
+- Topographic metaphor
+- Link between a phenotypic or a genetotypic landscape
+
+### Wright vs Fisher
+- Wright : Genotype to fitness with multipics
+- Fisher : Phenotype to fitness with a single pic
+- 2 "shape" of landscape (Gravilets 2010) and a link between them
+
+
+## Fisher's idea of adaptation
+
+### Small mutations in a complex organism and adaptation towards an optimum
+- Micro-mutationnism, gradual adaptation
+- Single pic with balancing selection
+- Pervasive epistasis
+
+### The geometry of the model
+- The function of fitness
+- The complexity
+- The distribution of fitness effects
+
+## A renewed interest for a simple but powerful tool
+
+- Kimura, Lande, Orr, Waxman and Welch, Martin...
+- Distribution of fitness effects
+- Distribution of epistasis
+- Speciation
+- Species repartition
+- Moving optimum (Gradual/abrupt environmental change)
+- Dominance
+- Sexe conflicts
+- Senescence...
+
+
+
+# Basic version of the FGM
+
+## Detailed description of the landscape
+
+### Population genetic concepts and hypotheses and parameters
+- Height of the pic and unicity of the optimum
+- Complexity and pleiotropy
+- Variance of selective/mutationnnal effects and isotropy
+
+### The geometry of the model across environments and genotypes
+- Fitness function
+- Phenotypic and fitness distances
+
+## Inference in the FGM
+
+### The distribution of fitness effects
+- DFE in the FGM
+- Fitting DFE from mutation accumulation experiments or "designed mutations"
+- Fitting DFE from fluctuation assays
+- Fitting DFE from drift load
+
+### The distribution of epistasis
+- Diminishing return epistasis and constant curvature
+- Pairwise epistasis
+- Empirical fitness landscape
+
+### Autres
+- Rate of adaptation
+- A preciser
+
+
+## Mapping genotypes and environments to the landscape
+
+### Example from the litterature
+- Hietpas 2013
+- Harmand 2017
+
+### Version simplifiée du FGM
+- Reprendre précédent document
+
+## Probability of fixation of a compensatory mutation 
+
+### "Cost of resistance" and "compensation"
+- The concept of cost of resistance (Lenormand et al. 2018)
+- The definition of compensation here
+
+### Probability of emergence of a mutation considering two envs
+- Joint-DFE in two environments (Martin & Lenormand 2015)
+- Angle between the environments' optima
+
+### Probability of fixation
+- SSWM regime (Extension autour du "2s")
+- WSSM regime (Compliqué ?)
+
+
+
+# Extended version of the FGM
+
+## Limits in the basic model and its "simplified" version
+
+### Complexity and pleiotropy
+- Origin of the differences observed in the dimension of the phenotypic landscape between DFE fitting
+- Lmitation of universal pleiotropy
+
+### Parallel evolution and anisotropy
+- Definition of parallel evolution and examples
+- Different sort of anisotropy and link with pleiotropy
+- Example of Harmand 2017
+
+
+## Extensions for a single environment
+
+### Anisotropy
+- Modelling (Chevin et al. 2010)
+- Inferring (Chevin et al. 2010)
+
+### Retsricted pleiotropy
+- Modelling (Chevin et al. 2010, Lourenço 2011)
+- Inferring (Chevin et al. 2010, Voir autres refs)
+
+## Dealing with multiple environments
+
+### Which parameters stay constant across environments ?
+- Inferring n
+- Inferring rmax in each environments
+
+### Anisotropy between environments
+- Module and directionnality
+- Problem for the mapping for the computation of the phenotypic distances
+
+# Conclusion
+
+## Summary of the main results available depending on the data
+- Table with datas and inference possible
+
+## Extrapolation from the results
+
+### Prediction of risk of resistance of a mutation in new environment
+
+### Prediction of the risk of evolving a compensatory mutations
