@@ -1,147 +1,93 @@
 ---
-title: "\"I have a dream\""
+title: "Note on the FGM, data and inferences"
+header-includes:
+   - \usepackage{float}
 output: 
   pdf_document:
     number_sections: true
 ---
 
+
 # Introduction
+This project is aiming at predicting fitness of AMR mutants in different environments and different genotypic backgrounds and at modelling the evolution of compensatory mutations. Under this main objective, three main goals have been depicted:
 
-## What are fitness landscapes and where do they come from ?
+1. Can we use estimates of costs of resistance obtained in one environment to reliably predict costs in a different environment?
+2. Are estimates of costs of resistance measured in one genetic background sufficient to predict costs on a different genetic background?
+3. Is the route to compensatory evolution similar between environments and genetic backgrounds
 
-### Definition
-- Topographic metaphor
-- Link between a phenotypic or a genetotypic landscape
+The method chosen to achieve these objectives can be separated in two main points:
 
-### Wright vs Fisher
-- Wright : Genotype to fitness with multipics
-- Fisher : Phenotype to fitness with a single pic
-- 2 "shape" of landscape (Gravilets 2010) and a link between them
+- Obtain measurements of fitness of multiples genotypes (with a set of known AMR mutations) in multiple environments and obtain replicated time series data of evolution of compensatory mutations.
+- Use the fitness landscape theory and more particularly Fisher’s Geometric Model (FGM) to predict fitness changes across environments, across genetic backgrounds and through compensatory mutations.
 
+The two methods has to be developed conjointly to be able to use as many information as possible from the data into the model. In the following are detailed the main achievable results depending of the available data and the theoretical assumptions used in the model. The first section shows the results which can be obtained using the simplest form of the FGM (with numerous theoretical assumptions). The second part discusses how alternative models with less restrictive assumptions could be fitted and used for predictions with the appropriate dataset. (The third section outline an extension of the project considering the frequency of mutants and compensatory mutations across environments using meta-genomic data. Not done yet)
 
-## Fisher's idea of adaptation
+# The simplest FGM:
 
-### Small mutations in a complex organism and adaptation towards an optimum
-- Micro-mutationnism, gradual adaptation
-- Single pic with balancing selection
-- Pervasive epistasis
+Predicting fitnesses across environment and genotypes using the FGM implies to parametrize the model. Here is defined a constrained version of the FGM which can be easily parametrized and allows simple analytical tractability.
+This simple version assumes:
 
-### The geometry of the model
-- The function of fitness
-- The complexity
-- The distribution of fitness effects
+- Isotropy: all traits are equivalent with respect to selection or mutation.
+- Constant dimensionality $n$ across environments.
+- Constant strength of selection and mutational variance (summarized by $\lambda$) across environments.
+- No phenotypic plasticity.
+- Universal pleiotropy (no modularity or partial pleiotropy).
+- Constant height of the fitness peaks across environments.
 
-## A renewed interest for a simple but powerful tool
+## Parametrization:
+Under these assumptions, the model can be fully parametrized for a given environment $E_1$, by the three parameters : $n,\lambda,r_{max}$.
 
-- Kimura, Lande, Orr, Waxman and Welch, Martin...
-- Distribution of fitness effects
-- Distribution of epistasis
-- Speciation
-- Species repartition
-- Moving optimum (Gradual/abrupt environmental change)
-- Dominance
-- Sexe conflicts
-- Senescence...
+- $n$ the number of uncorrelated phenotypic dimensions often called “complexity”.
+- $\lambda$ the mutational variance (standardized by the strength of selection).
+- $r_{max}$ the growth rate of the optimal phenotype in the environment $E_1$.
 
+$n$ and $\lambda$ can be measured by fitting the moments of the full distribution of mutation effects on fitness, on selection coefficient measured on random single mutants from mutation accumulation experiment or artificially engineered random single mutants or screened mutants for a given antibiotic dose (Martin \& Lenormand 2006, Martin \& Lenormand 2015).
+Alternatively, by fixing the dimensionality (for example $n=2$) we can get the mutational variance with only the mean effect of mutation on fitness. In the following we will focus on the case of $n=2$.
+$r_{max}$ can be obtained directly by measuring the growth rate of an optimal genotype.
 
+## Mapping of the genotypes and the environments in the landscape: 
 
-# Basic version of the FGM
+###The points of reference:
+In order to geometrically map genotypes in the landscape we need to have 3 points of reference ($n+1$ in a landscape with $n$ dimensions). These points of reference will be used for trilateration of any new point added in the landscape. The best option is to consider the genotypes adapted to 3 different environments as the reference points. The relative coordinates in the phenotypic space of these points can be obtained from the measure of the fitness of each optimal phenotype in each of the 3 environments (the fitness measured need to be converted in phenotypic distance through the inverse of the fitness function). These fitness also gives the maximal growth rate ($r_{max}$) for each environment. Thus, these 3 points define a plane (for $n=2$) in which we assume that every other environments or genotypes will lie.
 
-## Detailed description of the landscape
+###Trilateration of the genotypes’ positions:
 
-### Population genetic concepts and hypotheses and parameters
-- Height of the pic and unicity of the optimum
-- Complexity and pleiotropy
-- Variance of selective/mutationnnal effects and isotropy
+\begin{figure}[H]
+\centerline{\includegraphics[width=0.4\textwidth]{Analysis_genotypesXenvironmentsXmutants.png}}
+\caption{Example of trilateration}
+\end{figure}
 
-### The geometry of the model across environments and genotypes
-- Fitness function
-- Phenotypic and fitness distances
+Using these three points of reference, the coordinates of any genotype can be obtained by measuring its fitness in the 3 environments, which gives the phenotypic distance to each optimum. These distances can then be used to derive the coordinates of the genotype using trilateration as shown in the right panel.
+With a collection of phenotype mapped in the landscape, it is then possible to predict the effect of mutations across environments and genotypes. To do so, mutants emerged from one given genotype among the previously mapped ones, have to be mapped in the same methods as previously. From these data, it is possible to assess the fitness of one of these mutations in any genotype and/or any environment (previously mapped). It is also possible to predict epistasis between them. Thus it is possible to predict the cost of mutations across environments and genotypes without directly measuring it.
 
-## Inference in the FGM
+###Probability of evolving a compensatory mutation:
+The FGM allows to predict the proportion of mutations which are beneficial mutations in multiple environment (see Martin \& Lenormand 2015). However, the FGM does not include a genotype to phenotype map. Thus, it cannot predict the probability of emergence of a given mutation, but can predict the probability of emergence of mutations of a given effect $s$. Therefore the ability of the FGM to predict the emergence of compensatory mutations depends on the definition of compensation.
 
-### The distribution of fitness effects
-- DFE in the FGM
-- Fitting DFE from mutation accumulation experiments or "designed mutations"
-- Fitting DFE from fluctuation assays
-- Fitting DFE from drift load
+- If defined as “the adaptation to a second environment while keeping the same mutations of resistance adapted to the first environment”, it is not possible to give a prediction on the probability of such events.
+- However, if defined as “the adaptation to a second environment while keeping the same (or higher) fitness in the first environment, the FGM may give some predictions. Indeed in this definition the focus is not on a particular genotypes but on a fitnesses in both environment.
 
-### The distribution of epistasis
-- Diminishing return epistasis and constant curvature
-- Pairwise epistasis
-- Empirical fitness landscape
+Using the geometry of the landscape, it is possible to give the probability that a mutant while have the $n$-uplet of growth rates ($r_1, r_2,…, r_n$) in the $n$ environments $E_1, E_2,…, E_n$ (has been done for two environements in Martin \& Lenormand 2015 and can be approximated for $K$ environments but only for $n \gg 1$). Combined to an evolutionary model in the regime SSWM (or WSSM depending on the mutation rate and the mean of mutation effect on fitness), it is possible to predict the probability of fixation of such a mutation.
 
-### Autres
-- Rate of adaptation
-- A preciser
+These results and especially those on compensation are highly dependent on the assumptions of the model. The next section is an attempt at relaxing some of these assumptions.
 
+# Alternative FGM
 
-## Mapping genotypes and environments to the landscape
+From the model described in the previous section, some assumptions are less “realistic” (i.e. validated by empirical results) than others and could greatly influence the “validity” of the results (i.e. ability of accurately predict the fitness of mutations across environments and genotypes). However, relaxing these assumptions imply to increase the number of parameters and thus the number/type of data needed.
 
-### Example from the litterature
-- Hietpas 2013
-- Harmand 2017
+## Constant strength of selection and mutational variance across environments: 
+Considering the variation of the strength of selection or the mutational variance across environments can be easily introduced in the model, as long as the model stay isotropic, but requires to fit DFEM in each environments. Moreover, using the DFEM fitting method, it is difficult to disentangle the strength of selection from the mutational variance. Note that variations in the first would impact the computation of phenotypic distances through the fitness function, whereas variation in the second would not. However, variations of the mutational variance across environments could reflect a form of plasticity, thus partially relaxing the assumptions.
 
-### Version simplifi�e du FGM
-- Reprendre pr�c�dent document
+## Constant peak height across environments: 
+Relaxing this hypothesis is straightforward as the fitness of the optimal genotypes in each environment should be measured in any case (however, this implies to measure absolute fitnesses, i.e. growth rates).
 
-## Probability of fixation of a compensatory mutation 
+## Constant / fixed dimensionality across environments:
+First, the change of dimensionality across environments could be implemented but seems a priori less pertinent biologically, as the “complexity” is more an attribute of the organism and not of the environment. The dimensionality measured by DFEM fitting may vary across environments, however this may reflect the variation of effective dimensions across environments rather than “true complexity” (as discussed in Lourenço et al. 2011). Thus, considering partial pleiotropy would capture these variation will being more intuitive biologically, as discussed further below.
+Second, considering higher dimensionality than 2 is possible and common in the FGM. However, this would increase linearly the number of reference points needed for positioning genotypes in the space and may be not be analytically tractable in high dimensions (numerical optimization of “the distance geometry problem”). One way to overcome this problem would be a dimensionality reduction by projecting the points in higher dimensions in the hyperspace of selected dimensionality. This could be achieved by multidimensional scaling methods (MDS).
 
-### "Cost of resistance" and "compensation"
-- The concept of cost of resistance (Lenormand et al. 2018)
-- The definition of compensation here
+## Isotropy and universal pleiotropy:
+Considering anisotropy is the most difficult assumption to relax, has the geometry of the landscape could be greatly affected. Anisotropy, “can be introduced by mutational or selective correlations, and/or heterogeneity in mutational variance or strength of stabilizing selection across traits. These effects may in addition differ between environments, for example if different combinations of traits are favored in different environments (“syndromes”) or if mutational variances and covariances change with the environment (“phenotypic plasticity”).” (from Martin \& Lenormand 2015).
 
-### Probability of emergence of a mutation considering two envs
-- Joint-DFE in two environments (Martin & Lenormand 2015)
-- Angle between the environments' optima
+First, anisotropy can reflect a certain directionality in the mutation process in the phenotypic space. This means that mutation or selection have a stronger effect in certain directions of the phenotypic space. Thus, the “orientation” and the “magnitude” of selection and mutation can change across environments which can be a way of modelling parallel evolution. This form of anisotropy can be introduced in the FGM with analytical tractability for one environment but has only been done by simulations for multiple environments. It seems that mild anisotropy could be absorbed by the isotropic model even in a case with multiple optima but for biological scenario different (genotypes maladapted to every optimum or well adapted to one) from the ones we are interested in.
 
-### Probability of fixation
-- SSWM regime (Extension autour du "2s")
-- WSSM regime (Compliqu� ?)
-
-
-
-# Extended version of the FGM
-
-## Limits in the basic model and its "simplified" version
-
-### Complexity and pleiotropy
-- Origin of the differences observed in the dimension of the phenotypic landscape between DFE fitting
-- Lmitation of universal pleiotropy
-
-### Parallel evolution and anisotropy
-- Definition of parallel evolution and examples
-- Different sort of anisotropy and link with pleiotropy
-- Example of Harmand 2017
-
-
-## Extensions for a single environment
-
-### Anisotropy
-- Modelling (Chevin et al. 2010)
-- Inferring (Chevin et al. 2010)
-
-### Retsricted pleiotropy
-- Modelling (Chevin et al. 2010, Louren�o 2011)
-- Inferring (Chevin et al. 2010, Voir autres refs)
-
-## Dealing with multiple environments
-
-### Which parameters stay constant across environments ?
-- Inferring n
-- Inferring rmax in each environments
-
-### Anisotropy between environments
-- Module and directionnality
-- Problem for the mapping for the computation of the phenotypic distances
-
-# Conclusion
-
-## Summary of the main results available depending on the data
-- Table with datas and inference possible
-
-## Extrapolation from the results
-
-### Prediction of risk of resistance of a mutation in new environment
-
-### Prediction of the risk of evolving a compensatory mutations
+Second, if we relax the assumption of universal pleiotropy, mutations may affect only a certain subset of the phenotypic traits. These subsets can be random (partial/restricted pleiotropy) or form independent clusters (modular pleiotropy). This form of anisotropy is not exclusive with the first one and can be a way to model the parallel evolution often observed in AMR evolution.
+Different models taking into account anisotropy and not-universal pleiotropy have derived but none for a case with multiple optima. In terms of parametrization, such models would require much more parameters, all the more so the number of dimensions is large. Time series data of replicated evolution toward the different optima would be necessary to assess the level of anisotropy or partial pleiotropy.
