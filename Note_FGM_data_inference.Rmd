@@ -5,6 +5,8 @@ output:
     number_sections: true
 ---
 
+(Version trop détaillée à revoir dans le cadre d'une review sur le FGM)
+
 # Introduction
 
 ## What are fitness landscapes and where do they come from ?
