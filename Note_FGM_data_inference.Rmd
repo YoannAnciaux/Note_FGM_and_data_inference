@@ -37,29 +37,23 @@ The third part discusses how alternative models (still in the FGM framework), wi
 \caption{The topography metaphor of fitness landscapes. (Left) FGM with two dimensions: Black lines correspond to the surface of the fitness function and colored lines to iso-fitness lines. (Right) Topographic map.}
 \end{figure}
 
-The FGM is a model of phenotype to fitness landscape, which means that it links the potential phenotypic space of a given organism to fitness through a fitness function. This function gives the fitness of any phenotype in the phenotypic space as a topographic map would give the altitude for any pair of coordinates in the physical space. This metaphor has been used since the first decsription of a fitness landscape by Wright (date) and is one of the reason of the popularity of such model. However, contrary to topographic maps, the FGM is not limited by a two-dimensionnal space and may have a number $n \in \mathds{N}^+$ of dimensions depending on the organism considered. Moreover, its fitness function is dependent on the environment considered, meaning that for the same phenotype (associated with a genotype) the fitness can be different in two different environments. Thus the FGM is an interesting framework for the modelisation of fitness across environments. 
+The FGM is a model of phenotype to fitness landscape, which links the potential phenotypic space of a given organism to the fitness through a fitness function. This function gives the fitness of any phenotype in the phenotypic space as a topographic map would give the altitude for any pair of coordinates in the physical space. This metaphor has been used since the first decsription of a fitness landscape by Wright (date) and is one of the reason of the popularity of these models. However, contrary to topographic maps, the FGM is not limited by a two-dimensionnal space and may have a number $n \in \mathds{N}^+$ of dimensions often called complexity) depending on the organism considered. Moreover, its fitness function is dependent on the environment considered, meaning that for the same phenotype (associated with a genotype) the fitness can be different in two different environments. Thus the FGM is an interesting framework for the modelisation of fitness across environments. 
+
+The simplest form of the FGM (whose assumptions are detailed below) can be fully parametrized for a given environment, by the three parameters : $n,\lambda,r_{max}$.
+
+- $n$ the number of uncorrelated phenotypic dimensions often called "complexity".
+- $\lambda$ the mutational variance per trait (standardized by the strength of selection).
+- $r_{max}$ the growth rate of the optimal phenotype in the environment.
+
+An illustration of a one-dimensionnal FGM ($n=1$) with two genotypes is given in Figure 2A)
 
 
-### Small mutations in a complex organism and adaptation towards an optimum
-- Micro-mutationnism, gradual adaptation
-- Single pic with balancing selection
-- Pervasive epistasis
+\begin{figure}[H]
+\centerline{\includegraphics[width=1\textwidth]{FGM_parameters.png}}
+\caption{Illustration of two genotypes (wild-type and mutant) in two different environments ($E_1$ and $E_2$). (A) The wild type is at the phenotypic optimum and therefore has the maximal growth rate reachable in this environment ($r_{max}$). $\lambda$ is akin to the mean mutationnal effect of a mutation. (B) The wild type is no longer at the optimum in the new environment ($E_2$) due to the shift in the optimum position. Here $\lambda$, $r_{max}$ and $n$ are constant across environment.}
+\end{figure}
 
-### The geometry of the model
-- The function of fitness
-- The complexity
-- The distribution of fitness effects
-
-## A renewed interest for a simple but powerful tool
-
-
-
-
-
-
-
-Predicting fitnesses across environment and genotypes using the FGM implies to parametrize the model. Here is defined a constrained version of the FGM which can be easily parametrized and allows simple analytical tractability.
-This simple version assumes:
+This simple version of the FGM, which can be fully parametrized  by the three parameters $n,\lambda,r_{max}$, assumes :
 
 - Isotropy: all traits are equivalent with respect to selection or mutation.
 - Constant dimensionality $n$ across environments.
@@ -68,16 +62,19 @@ This simple version assumes:
 - Universal pleiotropy (no modularity or partial pleiotropy).
 - Constant height of the fitness peaks across environments.
 
+Assuming constant $n$, $\lambda$ and $r_{max}$ across environments constraint the change of environment to be represented in th FGM by a shift of the position of the optimum (see Figure 2B). The limits of theses assumptions are discussed in section IV.
+
+
 ## Parametrization:
-Under these assumptions, the model can be fully parametrized for a given environment $E_1$, by the three parameters : $n,\lambda,r_{max}$.
 
-- $n$ the number of uncorrelated phenotypic dimensions often called "complexity".
-- $\lambda$ the mutational variance (standardized by the strength of selection).
-- $r_{max}$ the growth rate of the optimal phenotype in the environment $E_1$.
+Under the model detailed above, we need to measure the three parameters $n$, $\lambda$ and $r_{max}$ for a given environment and then measure the distance between the optima of the different environments studied.
+To parametrize this simple version, the easiest way is to use random mutations stemmed from a genotype at the optimum (cité donnée de Martin 2006a).
+A genotype at the optimum can be obtained from a population at mutation selection balance which is characterized by a negligible rate of adaptation. Note that for organisms with a very large mutation rates the genotype sampled in the population may be far from the optimum, even if the population is at mutation-selection balance, due to the mutation load.
+A mutation accumulation experiment started from this optimal genotype can then give a cloud of single step random mutants. From the mean $\mathds{E}(s)$ and the variance $V(s)$ of the selection coefficients obtained from these mutants, $n = 2 \mathds{E}(s)^2 / V(s)$ and $\lambda = - V(s)/\mathds{E}(s)$ can be directly determined (Eq.(4), Martin and Lenormand 2006a).  
+Moreover, the measure of the growth rate of the optimal phenotype directly gives the fitness at the optimum $r_{max}$.
 
-$n$ and $\lambda$ can be measured by fitting the moments of the full distribution of mutation effects on fitness, on selection coefficient measured on random single mutants from mutation accumulation experiment or artificially engineered random single mutants or screened mutants for a given antibiotic dose (Martin \& Lenormand 2006, Martin \& Lenormand 2015).
-Alternatively, by fixing the dimensionality (for example $n=2$) we can get the mutational variance with only the mean effect of mutation on fitness. In the following we will focus on the case of $n=2$.
-$r_{max}$ can be obtained directly by measuring the growth rate of an optimal genotype.
+It is also possible to parametrize the model using mutants stemmed from a non-optimal genotype, as would give a screen at a given antibiotic dose.
+In this case it is necessary to fit the full distribution of fitness effects of mutations (not just the first two moments as in the previous case) to get an estimates of $n$ and $\lambda$. These can be done by fitting the distribution of fitness effects given in Martin and Lenormand (2015) Eq.(3) using maximum likelihood (for an exmaple see Harmand et al. 2017). This also gives the distance of the wild type genotype to the optimum but do not allaow to estimate $r_{max}$.
 
 ## Mapping of the genotypes and the environments in the landscape: 
 
