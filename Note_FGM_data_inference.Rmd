@@ -1,7 +1,8 @@
 ---
 title: "Note on the FGM, data and inferences"
 header-includes:
-   - \usepackage{float}
+   \usepackage{float}
+   \usepackage{dsfont}
 output: 
   pdf_document:
     number_sections: true
@@ -28,6 +29,34 @@ The third part discusses how alternative models (still in the FGM framework), wi
 
 
 # The simplest FGM:
+
+## What is the Fisher's geometric model ?
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=0.5\textwidth]{FGM2D_vs_Topo.png}}
+\caption{The topography metaphor of fitness landscapes. (Left) FGM with two dimensions: Black lines correspond to the surface of the fitness function and colored lines to iso-fitness lines. (Right) Topographic map.}
+\end{figure}
+
+The FGM is a model of phenotype to fitness landscape, which means that it links the potential phenotypic space of a given organism to fitness through a fitness function. This function gives the fitness of any phenotype in the phenotypic space as a topographic map would give the altitude for any pair of coordinates in the physical space. This metaphor has been used since the first decsription of a fitness landscape by Wright (date) and is one of the reason of the popularity of such model. However, contrary to topographic maps, the FGM is not limited by a two-dimensionnal space and may have a number $n \in \mathds{N}^+$ of dimensions depending on the organism considered. Moreover, its fitness function is dependent on the environment considered, meaning that for the same phenotype (associated with a genotype) the fitness can be different in two different environments. Thus the FGM is an interesting framework for the modelisation of fitness across environments. 
+
+
+### Small mutations in a complex organism and adaptation towards an optimum
+- Micro-mutationnism, gradual adaptation
+- Single pic with balancing selection
+- Pervasive epistasis
+
+### The geometry of the model
+- The function of fitness
+- The complexity
+- The distribution of fitness effects
+
+## A renewed interest for a simple but powerful tool
+
+
+
+
+
+
 
 Predicting fitnesses across environment and genotypes using the FGM implies to parametrize the model. Here is defined a constrained version of the FGM which can be easily parametrized and allows simple analytical tractability.
 This simple version assumes:
